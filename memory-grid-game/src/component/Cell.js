@@ -5,38 +5,28 @@ class Cell extends React.Component {
     return this.props.activeCells.indexOf(this.props.id) >= 0;
   }
 
-  handleClick(event) {
-    event.preventDefault(); 
-    console.log("Clicked");
-    if (this.props.gameState === "recall") {
-      this.props.recordGuess(this.props.id, this.active());
-    }
-   
-    // if (this.guessState() === undefined &&
-    // this.props.gameState === "recall") {
-      
-    // }
-  }
-   
   guessState() {
     const { correctGuesses, wrongGuesses } = this.props;
-    const cellIdString = String(this.props.id); // Convert id to string
-    
-    if (correctGuesses && correctGuesses.indexOf(cellIdString) >= 0) {
+    if (correctGuesses && correctGuesses.indexOf(this.props.id) >= 0) {      
       return true;
-    } else if (wrongGuesses && wrongGuesses.indexOf(cellIdString) >= 0) {
+    } else if (wrongGuesses && wrongGuesses.indexOf(this.props.id) >= 0) {
       return false;
-    } else {
-      return ""; // Return a default value when neither correct nor wrong guess
     }
   }
   
+ 
+  handleClick = () => {
+    if (this.guessState() === undefined && this.props.gameState === "recall") {
+      this.props.recordGuess(this.props.id, this.active());
+    }
+
+  }
   
-  
+   
 
   render() {
     let className = "cell";
-    if (this.props.gameState === "memorize" && this.active()) {
+    if (this.props.showActiveCells && this.active()) {
     className += " active";
     }
     className += " guess-" + this.guessState();

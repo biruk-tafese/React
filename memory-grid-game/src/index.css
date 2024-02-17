@@ -3,8 +3,8 @@ body {
 }
 
 .cell {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   display: inline-block;
   border: 1px solid #aaa;
   background: #f8f8f8;
@@ -21,4 +21,15 @@ body {
 
 .guess-false {
   background-color: #cc0000;
+}
+
+.play-again-button {
+  background-color: #00cc00;
+  padding: 5px;
+  font-size: 28px;
+  border: none;
+  border-radius: 5px;
+}
+.play-again-button:hover {
+  box-shadow: 4px 2px 5px #1111;
 }

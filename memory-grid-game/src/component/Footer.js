@@ -13,6 +13,28 @@ class Footer extends React.Component {
          </div>
       )
     }
+
+    PlayAgainButton() {
+        if (["won", "lost"].indexOf(this.props.gameState) >= 0) {
+          return (
+            <button className="play-again-button"
+              onClick={this.props.playAgain}>
+                Play Again
+             </button>
+          )
+        }
+    }
+    
+    resetGame() {
+      this.setState( {
+         gameState:"ready",
+         wrongGuess: [],
+         correctGuesses: []
+      }, ()=> {
+          //invok the timers to change gameState
+      })
+    }
+
    render() {
       return (
         <div className="footer">
@@ -21,7 +43,10 @@ class Footer extends React.Component {
              {this.props.hints[this.props.gameState]}
              </h1>
               <h3>{this.remainingCount()}</h3>
+              
+              {this.PlayAgainButton()}
            </div>
+           
         </div>
       )
    }
@@ -32,7 +57,9 @@ Footer.defaultProps = {
     hints: {
         ready: "Get Ready",
         memory: "Memorize",
-        recall: "Recall"
+        recall: "Recall",
+        won:"well played",
+        lost: "Game Over"
     }
 }
 
